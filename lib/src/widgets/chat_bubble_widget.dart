@@ -113,35 +113,36 @@ class ChatBubbleWidget extends StatelessWidget {
                     imageUrl: profileCircleConfig?.profileImageUrl,
                     circleRadius: profileCircleConfig?.circleRadius,
                   ),
-                Expanded(
-                  child: isMessageBySender
-                      ? SwipeToReply(
-                          onLeftSwipe: () {
-                            if (swipeToReplyConfig?.onLeftSwipe != null) {
-                              swipeToReplyConfig?.onLeftSwipe!(
-                                  message.message, message.sendBy);
-                            }
-                            onSwipe(message);
-                          },
-                          replyIconColor: swipeToReplyConfig?.replyIconColor,
-                          swipeToReplyAnimationDuration:
-                              swipeToReplyConfig?.animationDuration,
-                          child: _messagesWidgetColumn,
-                        )
-                      : SwipeToReply(
-                          onRightSwipe: () {
-                            if (swipeToReplyConfig?.onRightSwipe != null) {
-                              swipeToReplyConfig?.onRightSwipe!(
-                                  message.message, message.sendBy);
-                            }
-                            onSwipe(message);
-                          },
-                          replyIconColor: swipeToReplyConfig?.replyIconColor,
-                          swipeToReplyAnimationDuration:
-                              swipeToReplyConfig?.animationDuration,
-                          child: _messagesWidgetColumn,
-                        ),
-                ),
+                if (chatBubbleConfig?.allowReply ?? false)
+                  Expanded(
+                    child: isMessageBySender
+                        ? SwipeToReply(
+                            onLeftSwipe: () {
+                              if (swipeToReplyConfig?.onLeftSwipe != null) {
+                                swipeToReplyConfig?.onLeftSwipe!(
+                                    message.message, message.sendBy);
+                              }
+                              onSwipe(message);
+                            },
+                            replyIconColor: swipeToReplyConfig?.replyIconColor,
+                            swipeToReplyAnimationDuration:
+                                swipeToReplyConfig?.animationDuration,
+                            child: _messagesWidgetColumn,
+                          )
+                        : SwipeToReply(
+                            onRightSwipe: () {
+                              if (swipeToReplyConfig?.onRightSwipe != null) {
+                                swipeToReplyConfig?.onRightSwipe!(
+                                    message.message, message.sendBy);
+                              }
+                              onSwipe(message);
+                            },
+                            replyIconColor: swipeToReplyConfig?.replyIconColor,
+                            swipeToReplyAnimationDuration:
+                                swipeToReplyConfig?.animationDuration,
+                            child: _messagesWidgetColumn,
+                          ),
+                  ),
               ],
             ),
           ),

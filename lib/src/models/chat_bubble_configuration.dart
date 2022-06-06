@@ -32,14 +32,14 @@ class ChatBubbleConfiguration {
   final ChatBubble? inComingChatBubbleConfig;
   final ChatBubble? outgoingChatBubbleConfig;
   final MessageCallBack? onDoubleTap;
-
-  ChatBubbleConfiguration({
-    this.padding,
-    this.margin,
-    this.maxWidth,
-    this.longPressAnimationDuration,
-    this.inComingChatBubbleConfig,
-    this.outgoingChatBubbleConfig,
-    this.onDoubleTap,
-  });
+  final bool allowReply;
+  ChatBubbleConfiguration(
+      {this.padding,
+      this.margin,
+      this.maxWidth,
+      this.longPressAnimationDuration,
+      this.inComingChatBubbleConfig,
+      this.outgoingChatBubbleConfig,
+      this.onDoubleTap,
+      this.allowReply = false});
 }
